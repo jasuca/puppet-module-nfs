@@ -3,7 +3,7 @@ class nfs::server::redhat::service {
   if $nfs::server::redhat::nfs_v4 == true {
       service {"nfs":
         ensure     => running,
-        enable     => true,
+        enable     => $nfs::server::enabled,
         hasrestart => true,
         hasstatus  => true,
         require    => Package["nfs-utils"],
@@ -12,7 +12,7 @@ class nfs::server::redhat::service {
     } else {
       service {"nfs":
         ensure     => running,
-        enable     => true,
+        enable     => $nfs::server::enabled,
         hasrestart => true,
         hasstatus  => true,
         require    => Package["nfs-utils"],
